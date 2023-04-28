@@ -15,7 +15,7 @@ export default function Articles() {
                     `https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`
                 ).then((response) => {
                     if (!response.ok) {
-                        throw new Error("Network response was not ok");
+                        throw new Error("Reponse Correct");
                     }
                     return response.json();
                 })
@@ -27,6 +27,7 @@ export default function Articles() {
 
         }
     };
+    
 
     useEffect(() => {
         AfficherObjects();
@@ -40,6 +41,11 @@ export default function Articles() {
                     <div key={article.objectID} className="col-2 box">
                         <div className="box-image">
                             <img src={article.primaryImageSmall} alt={article.title} style={{objectFit: 'cover', width: '100%', height: '100%'}}/>
+                            <div className="box-info">
+                                <h3>{article.title}</h3>
+                                <h3>{article.culture}</h3>
+                                <h3>{article.artistRole}</h3>
+                            </div>
                         </div>
                     </div>
                 ))}
@@ -49,6 +55,9 @@ export default function Articles() {
                     <div key={article.objectID} className="col-2 box">
                         <div className="box-image">
                             <img src={article.primaryImageSmall} alt={article.title} style={{objectFit: 'cover', width: '100%', height: '100%'}}/>
+                            <div className="box-info">
+                                <h3>{article.title}</h3>
+                            </div>
                         </div>
                     </div>
                 ))}
@@ -58,6 +67,9 @@ export default function Articles() {
                     <div key={article.objectID} className="col-2 box">
                         <div className="box-image">
                             <img src={article.primaryImageSmall} alt={article.title} style={{objectFit: 'cover', width: '100%', height: '100%'}}/>
+                            <div className="box-info">
+                            <h3>{article.title}</h3>
+                            </div>
                         </div>
                     </div>
                 ))}
