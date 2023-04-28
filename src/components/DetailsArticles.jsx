@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 import {useParams} from "react-router-dom";
+import "../styles/DetailsArticles.css";
+import "../styles/Recherche.css";
+import RechercheSimple from "./RechercheSimple";
 
 function DetailsArticles() {
     const [article, setArticle] = useState(null);
@@ -21,11 +24,46 @@ function DetailsArticles() {
 
     //l'affichage
     return (
-        <div>
-            <h2>{article.title}</h2>
-            <img src={article.primaryImageSmall} alt={article.title} />
-            <p>{article.description}</p>
-        </div>
+        <>
+
+            <RechercheSimple/>
+
+            <img className="image" src={article.primaryImageSmall} alt={article.title} />
+            <div className="details">
+                <div className="detail">
+                    <span className="label">Titre :</span>
+                    <span className="value">{article.title}</span>
+                </div>
+                <div className="detail">
+                    <span className="label">Object Name:</span>
+                    <span className="value">{article.objectName}</span>
+                </div>
+                <div className="detail">
+                    <span className="label">Auteur:</span>
+                    <span className="value">{article.artistDisplayName}</span>
+                </div>
+                <div className="detail">
+                    <span className="label">City:</span>
+                    <span className="value">{article.city}</span>
+                </div>
+                <div className="detail">
+                    <span className="label">Culture:</span>
+                    <span className="value">{article.culture}</span>
+                </div>
+                <div className="detail">
+                    <span className="label">Department:</span>
+                    <span className="value">{article.department}</span>
+                </div>
+                <div className="detail">
+                    <span className="label">Annee Accession:</span>
+                    <span className="value">Nom du photographe</span>
+                </div>
+                <div className="detail">
+                    <span className="label">Artist Role</span>
+                    <span className="value">Nom du photographe</span>
+                </div>
+            </div>
+        </>
     );
 }
 export default DetailsArticles;

@@ -2,12 +2,15 @@ import { useState } from "react";
 
 import  "../styles/Recherche.css"
 import ResultatRechercheSimple from "./ResultatRechercheSimple";
+
 import {Link} from "react-router-dom";
+
 
 function RechercheSimple()
 {
     const [search, setSearch] = useState("");
     const [searchResult, setSearchResult] = useState([]);
+
 
     const handleSearch = async (query) => {
         const response = await fetch(`https://collectionapi.metmuseum.org/public/collection/v1/search?q=${query}`);
@@ -36,7 +39,7 @@ function RechercheSimple()
 
         <div className="search-row">
             <form action="submit" onSubmit={handleSubmit}>
-            <input type="text" className="search-input" placeholder="RechercheSimple..." onChange={handleChange}/>
+            <input type="text" className="search-input" placeholder="Recherche Simple..." onChange={handleChange}/>
                 <button className="search-button">Rechercher</button>
                 <Link to="/recherche-avance">
                     <button className="search-button">Avance</button>
