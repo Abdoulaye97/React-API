@@ -39,6 +39,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
 }
 
 .box-info {
@@ -68,4 +69,8 @@
 
 body {
     background-color: #f2f3f7!important;
+}
+
+.titre{
+    text-align: center;
 }

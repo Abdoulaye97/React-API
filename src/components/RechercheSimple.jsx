@@ -1,8 +1,10 @@
 import { useState } from "react";
 
 import  "../styles/Recherche.css"
-import ResultatRecherche from "./ResultatRecherche";
-function Recherche()
+import ResultatRechercheSimple from "./ResultatRechercheSimple";
+import {Link} from "react-router-dom";
+
+function RechercheSimple()
 {
     const [search, setSearch] = useState("");
     const [searchResult, setSearchResult] = useState([]);
@@ -18,10 +20,9 @@ function Recherche()
     const data = await handleSearch(search);
     if (data.objectIDs && data.objectIDs.length > 0) {
         setSearchResult(data.objectIDs);
-        console.log("Résultats trouvés pour la recherche:", search);
+        console.log("trouvés :", search);
     } else {
-        console.log("Aucun résultat trouvé pour la recherche:", search);
-
+        console.log("non trouve",search);
     }
 }
 
@@ -35,13 +36,16 @@ function Recherche()
 
         <div className="search-row">
             <form action="submit" onSubmit={handleSubmit}>
-            <input type="text" className="search-input" placeholder="Recherche..." onChange={handleChange}/>
+            <input type="text" className="search-input" placeholder="RechercheSimple..." onChange={handleChange}/>
                 <button className="search-button">Rechercher</button>
+                <Link to="/recherche-avance">
+                    <button className="search-button">Avance</button>
+                </Link>
             </form>
         </div>
-            <ResultatRecherche searchResult={searchResult} />
+            <ResultatRechercheSimple searchResult={searchResult} />
         </>
    );
 }
 
-export default Recherche
+export default RechercheSimple
