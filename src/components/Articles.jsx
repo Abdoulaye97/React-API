@@ -13,7 +13,7 @@ export default function Articles() {
                 "https://collectionapi.metmuseum.org/public/collection/v1/objects"
             );
             const data = await response.json();
-            const objectIDs = data.objectIDs.slice(95, 110);
+            const objectIDs = data.objectIDs.slice(94, 109);
             const objectPromises = objectIDs.map((id) =>
                 fetch(
                     `https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`
@@ -40,17 +40,34 @@ export default function Articles() {
     //l'affichage
     return (
         <>
-            <h1 className="titre">Notre Collections</h1>
+            <h1 className="titre">Notre Collection</h1>
             <div className="row">
                 {articles.slice(0,5).map((article) => (
                     <div key={article.objectID} className="col-2 box">
 
-                        <Link  to={`/details-articles/${article.objectID}`} className="box-image" >
-                          <img src={article.primaryImageSmall} alt={article.title} style={{objectFit: 'cover', width: '100%', height: '100%'}}/>
-                            <div className="box-info">
-                                <h3>{article.title}</h3>
-                                <h3>{article.culture}</h3>
-                                <h3>{article.artistRole}</h3>
+                        <Link  to={`/details-articles/${article.objectID}`} className="box-image lien" >
+                          <img src={article.primaryImageSmall} alt={article.title}/>
+                            <div className="details-articles">
+                                <div className="detail">
+                                    <span className="label">Titre :</span>
+                                    <span className="value">{article.title}</span>
+                                </div>
+                                <div className="detail">
+                                    <span className="label">Object Name:</span>
+                                    <span className="value">{article.objectName}</span>
+                                </div>
+                                <div className="detail">
+                                    <span className="label">Auteur:</span>
+                                    <span className="value">{article.artistDisplayName}</span>
+                                </div>
+                                <div className="detail">
+                                    <span className="label">City:</span>
+                                    <span className="value">{article.city}</span>
+                                </div>
+                                <div className="detail">
+                                    <span className="label">Culture:</span>
+                                    <span className="value">{article.culture}</span>
+                                </div>
                             </div>
                         </Link>
                     </div>
@@ -60,12 +77,30 @@ export default function Articles() {
                 {articles.slice(5,10).map((article) => (
                     <div key={article.objectID} className="col-2 box">
 
-                        <Link  to={`/details-articles/${article.objectID}`} className="box-image">
-                            <img src={article.primaryImageSmall} alt={article.title} style={{objectFit: 'cover', width: '100%', height: '100%'}}/>
-                            <div className="box-info">
-                                <h3>{article.title}</h3>
-                                <h3>{article.culture}</h3>
-                                <h3>{article.artistRole}</h3>
+                        <Link  to={`/details-articles/${article.objectID}`} className="box-image lien" >
+                            <img src={article.primaryImageSmall} alt={article.title}/>
+                            <div className="details-articles">
+                                <div className="detail">
+                                    <span className="label">Titre :</span>
+                                    <span className="value">{article.title}</span>
+                                </div>
+                                <div className="detail">
+                                    <span className="label">Object Name:</span>
+                                    <span className="value">{article.objectName}</span>
+                                </div>
+                                <div className="detail">
+                                    <span className="label">Auteur:</span>
+                                    <span className="value">{article.artistDisplayName}</span>
+                                </div>
+                                <div className="detail">
+                                    <span className="label">City:</span>
+                                    <span className="value">{article.city}</span>
+                                </div>
+                                <div className="detail">
+                                    <span className="label">Culture:</span>
+                                    <span className="value">{article.culture}</span>
+                                </div>
+
                             </div>
                         </Link>
                     </div>
@@ -75,17 +110,35 @@ export default function Articles() {
                 {articles.slice(10,15).map((article) => (
                     <div key={article.objectID} className="col-2 box">
 
-                        <Link  to={`/details-articles/${article.objectID}`} className="box-image">
-                            <img src={article.primaryImageSmall} alt={article.title} style={{objectFit: 'cover', width: '100%', height: '100%'}}/>
-                            <div className="box-info">
-                                <h3>{article.title}</h3>
-                                <h3>{article.culture}</h3>
-                                <h3>{article.artistRole}</h3>
+                        <Link  to={`/details-articles/${article.objectID}`} className="box-image lien" >
+                            <img src={article.primaryImageSmall} alt={article.title}/>
+                            <div className="details-articles">
+                                <div className="detail">
+                                    <span className="label">Titre :</span>
+                                    <span className="value">{article.title}</span>
+                                </div>
+                                <div className="detail">
+                                    <span className="label">Object Name:</span>
+                                    <span className="value">{article.objectName}</span>
+                                </div>
+                                <div className="detail">
+                                    <span className="label">Auteur:</span>
+                                    <span className="value">{article.artistDisplayName}</span>
+                                </div>
+                                <div className="detail">
+                                    <span className="label">City:</span>
+                                    <span className="value">{article.city}</span>
+                                </div>
+                                <div className="detail">
+                                    <span className="label">Culture:</span>
+                                    <span className="value">{article.culture}</span>
+                                </div>
                             </div>
                         </Link>
                     </div>
                 ))}
             </div>
+
         </>
 
     );

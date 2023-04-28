@@ -1,4 +1,4 @@
-/* Styles pour la ligne de recherche */
+
 
 .search-row {
     display: flex;
@@ -6,7 +6,7 @@
     align-items: center;
     margin-top: 20px;
 }
-/* Styles pour l'input de recherche */
+
 
 .search-input {
     width: 300px;
@@ -17,7 +17,7 @@
     margin: 0 10px;
     font-size: 16px;
 }
-/* Styles pour le bouton de recherche */
+
 
 .search-button {
     width: 80px;

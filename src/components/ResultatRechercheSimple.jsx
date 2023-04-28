@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "../styles/Articles.css"
+import {Link} from "react-router-dom";
 async function AfficherResultatArticles(id){
 const response = await fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`);
 const data = await response.json();
@@ -30,14 +31,14 @@ function ResultatRechercheSimple({ searchResult }) {
                     <div className="row">
                         {articleTrouve.slice(0.5).map((article) => (
                             <div key={article.id} className="col-2 box">
-                                <div className="box-image">
+                                <Link to={`/details-articles/${article.objectID}`} className="box-image">
                                     <img src={article.primaryImageSmall} alt={article.title} style={{objectFit: 'cover', width: '100%', height: '100%'}}/>
                                     <div className="box-info">
                                         <h3>{article.title}</h3>
                                         <h3>{article.culture}</h3>
                                         <h3>{article.artistRole}</h3>
                                     </div>
-                                </div>
+                                </Link>
                             </div>
                         ))}
                     </div>

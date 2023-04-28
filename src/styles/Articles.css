@@ -1,56 +1,66 @@
-
+/* Styles pour le conteneur */
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+/* Styles pour la ligne de recherche */
+.search-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+/* Styles pour l'input de recherche */
+.search-input {
+    width: 300px;
+    height: 30px;
+    border-radius: 5px;
+    border: none;
+    padding: 5px;
+    margin: 0 10px;
+    font-size: 16px;
+}
+/* Styles pour le bouton de recherche */
+.search-button {
+    width: 80px;
+    height: 30px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
 /* Styles pour la grille */
-
 .row {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 5px;
 }
-
 .box {
-    height: 200px;
+    height: 300px;
     width: 200px;
     margin: 20px;
     background-color: gray;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 10px;
 }
-.box-image {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.box img {
+    max-height: 200px;
+    max-width: 200px;
+    object-fit: contain;
 }
-
-.box-image img {
-    max-height: 100%;
-    max-width: 100%;
-}
-.box {
-    position: relative;
-    height: 200px;
-    width: 200px;
-    margin: 20px;
-    background-color: gray;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-}
-
-.box-info {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-    padding: 10px;
-    text-align: center;
+.details-articles {
+    margin-top: 10px;
+    height: 80px;
+    width: 180px;
+    overflow: auto;
 }
 @media (max-width: 768px) {
     .row {
@@ -60,17 +70,15 @@
         flex-basis: calc(50% - 40px);
     }
 }
-
 @media (max-width: 480px) {
     .box {
         flex-basis: calc(100% - 40px);
     }
 }
 
-body {
-    background-color: #f2f3f7!important;
-}
-
 .titre{
     text-align: center;
+}
+.lien{
+    text-decoration: none;
 }
