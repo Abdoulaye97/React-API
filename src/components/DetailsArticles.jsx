@@ -1,32 +1,38 @@
 import { useEffect, useState } from "react";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import "../styles/DetailsArticles.css";
 import "../styles/Recherche.css";
 import RechercheSimple from "./RechercheSimple";
 
 function DetailsArticles() {
     const [article, setArticle] = useState(null);
+    const [showAvanceButton, setShowAvanceButton] = useState(false);
     // c'est avec cet hooks que je recupere l'id passee en parametre
     const { id } = useParams();
-
+    const navigate = useNavigate();
     useEffect(() => {
-        // je passe id que j'ai recuper sur le lien qui se trouve sur App.js
-        //cette id je le passe l'api pour pouvoir trouver l'article correspondants
         fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`)
-            .then((response) => response.json())
-            //les resultat recuperer je le passe au setteur de mon state
-            .then((data) => setArticle(data));
-    }, [id]);
-    //tant les donnes ne sont pas terminer je charge la page
-    if (!article) {
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error('Article not found');
+                }
+                return response.json();
+            })
+            .then((data) => setArticle(data))
+            .catch(() => {
+                navigate('*');
+            });
+    }, [id, navigate]);
+
+    if (!article)
+    {
         return <div>Loading...</div>;
     }
-
     //l'affichage
     return (
         <>
 
-            <RechercheSimple/>
+            <RechercheSimple showAvanceButton={showAvanceButton}/>
 
             <img className="image" src={article.primaryImageSmall} alt={article.title} />
             <div className="details">
@@ -61,6 +67,10 @@ function DetailsArticles() {
                 <div className="detail">
                     <span className="label">Artist Role</span>
                     <span className="value">Nom du photographe</span>
+                </div>
+                <div className="detail">
+                    <span className="label">Wikipedia</span>
+                    <span className="value"><a href={article.objectWikidata_URL} target="_blank" rel="noopener noreferrer">Lien</a></span>
                 </div>
             </div>
         </>

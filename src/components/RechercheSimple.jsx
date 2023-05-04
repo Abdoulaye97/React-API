@@ -6,11 +6,10 @@ import ResultatRechercheSimple from "./ResultatRechercheSimple";
 import {Link} from "react-router-dom";
 
 
-function RechercheSimple()
+function RechercheSimple({showAvanceButton})
 {
     const [search, setSearch] = useState("");
     const [searchResult, setSearchResult] = useState([]);
-
 
     const handleSearch = async (query) => {
         const response = await fetch(`https://collectionapi.metmuseum.org/public/collection/v1/search?q=${query}`);
@@ -31,7 +30,7 @@ function RechercheSimple()
 
     const handleChange = (event) => {
         setSearch(event.target.value);
-        console.log(event.target.value);
+
     };
 
     return (
@@ -39,11 +38,12 @@ function RechercheSimple()
 
         <div className="search-row">
             <form action="submit" onSubmit={handleSubmit}>
-            <input type="text" className="search-input" placeholder="Recherche Simple..." onChange={handleChange}/>
+            <input type="text" className="search-input" value={search} placeholder="Recherche Simple..." onChange={handleChange}/>
                 <button className="search-button">Rechercher</button>
-                <Link to="/recherche-avance">
-                    <button className="search-button">Avance</button>
-                </Link>
+                  <Link to="/recherche-avance" className={showAvanceButton ? '' : 'hide'}>
+                      <button className="search-button">Avance</button>
+                  </Link>
+
             </form>
         </div>
             <ResultatRechercheSimple searchResult={searchResult} />

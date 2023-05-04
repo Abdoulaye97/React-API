@@ -9,7 +9,7 @@ function Error()
                 <div>
                     <div className="message">Page introuvable</div>
                     <Link className="lien" to={"/"}>
-                    <button className="button">Retour</button>
+                    <button className="button">Accueil</button>
                     </Link>
                 </div>
             </div>

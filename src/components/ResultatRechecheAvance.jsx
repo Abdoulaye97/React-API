@@ -1,40 +1,32 @@
 import { useEffect, useState } from "react";
-import "../styles/Articles.css"
-import {Link} from "react-router-dom";
+import "../styles/Articles.css";
+import { Link } from "react-router-dom";
 import Pagination from "./Pagination";
 
-async function AfficherResultatArticles(id){
-const response = await fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`);
-const data = await response.json();
-return data;
+async function AfficherResultatArticles(id) {
+    const response = await fetch(
+        `https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`
+    );
+    const data = await response.json();
+    return data;
 }
 
-function ResultatRechercheSimple({ searchResult }) {
-
+function ResultatRechercheAvancee({ searchResult }) {
     const [articleTrouve, setArticleTrouve] = useState([]);
-    const [currentPage, setCurrentPage] = useState((1));
-    const [postsPerPage, setPostPerPage] = useState(8);
 
     useEffect(() => {
         async function AfficherResultatArticle() {
             const articles = await Promise.all(
-                searchResult.slice(0,50).map((id) => AfficherResultatArticles(id))
+                searchResult.slice(0, 10).map((id) => AfficherResultatArticles(id))
             );
             setArticleTrouve(articles);
         }
-
-
         AfficherResultatArticle();
     }, [searchResult]);
-    const lastPostIndx = currentPage * postsPerPage;
-    const fisrtPostIndex = lastPostIndx - postsPerPage;
-    const currentPosts = articleTrouve.slice(fisrtPostIndex, lastPostIndx);
-
-
 
     return (
         <>
-        {articleTrouve.length > 0 && (
+            {articleTrouve.length > 0 && (
                 <>
                     <h2 className="titre">Résultats de recherche</h2>
                     <div className="row" key="search-results">
@@ -74,12 +66,9 @@ function ResultatRechercheSimple({ searchResult }) {
                                 </Link>
                             </div>
                         ))}
-
                     </div>
                     <div className="pagi">
-                    <Pagination totalsPosts={articleTrouve.length}
-                    postsPerPage={postsPerPage}
-                    onPageChange={(page) =>setCurrentPage(page)}/>
+                        <Pagination totalsPosts={articleTrouve.length}/>
                     </div>
                 </>
             )}
@@ -88,4 +77,4 @@ function ResultatRechercheSimple({ searchResult }) {
     );
 }
 
-export default ResultatRechercheSimple;
+export default ResultatRechercheAvancee;

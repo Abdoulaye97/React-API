@@ -1,13 +1,17 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "../styles/Articles.css";
+import "../styles/Recherche.css";
+import RechercheSimple from "./RechercheSimple";
 
 
 export default function Articles() {
     const [articles, setArticles] = useState([]);
+    const [showAvanceButton, setShowAvanceButton] = useState(true);
 
-     // dans cet etape je recuper 15 id de l'api que je passe au plutart en parametre pour recuper les information des articles
-    const AfficherObjects = async() => {
+
+    // dans cet etape je recuper 15 id de l'api que je passe au plutart en parametre pour recuper les information des articles
+    const AfficherObjects = async () => {
         try {
             const response = await fetch(
                 "https://collectionapi.metmuseum.org/public/collection/v1/objects"
@@ -28,9 +32,9 @@ export default function Articles() {
             setArticles(objects);
         } catch (error) {
             console.error(error);
-
         }
     };
+
 
 
     useEffect(() => {
@@ -40,6 +44,7 @@ export default function Articles() {
     //l'affichage
     return (
         <>
+            <RechercheSimple showAvanceButton={showAvanceButton} />
             <h1 className="titre">Notre Collection</h1>
             <div className="row">
                 {articles.slice(0,5).map((article) => (
