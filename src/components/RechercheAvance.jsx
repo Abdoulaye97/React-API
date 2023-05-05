@@ -2,6 +2,8 @@ import { useState } from "react";
 import "../styles/RechercheAvance.css";
 
 import ResultatRechercheAvancee from "./ResultatRechecheAvance";
+import Pagination from "./Pagination";
+import Footer from "./Footer";
 
 function RechercheAvancee() {
   const [title, setTitle] = useState("");
@@ -12,12 +14,17 @@ function RechercheAvancee() {
   const [objectEndDate, setObjectEndDate] = useState("");
   const [searchResult, setSearchResult] = useState([]);
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const [articlesPerPage] = useState(6);
+
+
   const handleSearch = async (query) => {
     const response = await fetch(
         `https://collectionapi.metmuseum.org/public/collection/v1/search?q=${query}`
     );
     const data = await response.json();
     return data;
+    setCurrentPage(1);
   };
 
   const handleSubmit = async (event) => {
@@ -61,6 +68,9 @@ function RechercheAvancee() {
     setObjectEndDate(event.target.value);
     console.log(event.target.value);
   };
+  const indexOfLastArticle = currentPage * articlesPerPage;
+  const indexOfFirstArticle = indexOfLastArticle - articlesPerPage;
+  const currentArticles = searchResult.slice(indexOfFirstArticle, indexOfLastArticle);
 
   return (
       <>
@@ -138,7 +148,18 @@ function RechercheAvancee() {
           </form>
         </div>
         </div>
-        <ResultatRechercheAvancee searchResult={searchResult} />
+        <ResultatRechercheAvancee searchResult={currentArticles} />
+        <div className="pagi">
+          <Pagination
+              articlesPerPage={articlesPerPage}
+              totalArticles={searchResult.length}
+              currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
+          />
+        </div>
+      <div>
+         <Footer/>
+      </div>
       </>
   );
 }

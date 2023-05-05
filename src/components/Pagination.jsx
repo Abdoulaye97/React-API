@@ -1,5 +1,5 @@
 import React from "react";
-
+import "../styles/Recherche.css"
 
 function Pagination({ articlesPerPage, totalArticles, currentPage, setCurrentPage })
 {
@@ -15,15 +15,17 @@ function Pagination({ articlesPerPage, totalArticles, currentPage, setCurrentPag
 
   return (
       <div>
-        {pageNumbers.map((pageNumber) => (
-            <button
-                key={pageNumber}
-                onClick={() => handleClick(pageNumber)}
-                disabled={pageNumber === currentPage}
-            >
-              {pageNumber}
-            </button>
-        ))}
+          <div>
+              {pageNumbers.slice(0,8).map((pageNumber) => (
+                  <button
+                      key={pageNumber}
+                      onClick={() => handleClick(pageNumber)}
+                      disabled={pageNumber === currentPage}
+                  className="bouton-pagi">
+                      {pageNumber}
+                  </button>
+              ))}
+          </div>
       </div>
   );
 }

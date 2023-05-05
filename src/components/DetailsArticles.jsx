@@ -3,6 +3,7 @@ import {useNavigate, useParams} from "react-router-dom";
 import "../styles/DetailsArticles.css";
 import "../styles/Recherche.css";
 import RechercheSimple from "./RechercheSimple";
+import Footer from "./Footer";
 
 function DetailsArticles() {
     const [article, setArticle] = useState(null);
@@ -62,17 +63,18 @@ function DetailsArticles() {
                 </div>
                 <div className="detail">
                     <span className="label">Annee Accession:</span>
-                    <span className="value">Nom du photographe</span>
+                    <span className="value">{article.accessionYear}</span>
                 </div>
                 <div className="detail">
                     <span className="label">Artist Role</span>
-                    <span className="value">Nom du photographe</span>
+                    <span className="value">{article.artistRole}</span>
                 </div>
                 <div className="detail">
                     <span className="label">Wikipedia</span>
                     <span className="value"><a href={article.objectWikidata_URL} target="_blank" rel="noopener noreferrer">Lien</a></span>
                 </div>
             </div>
+            <Footer/>
         </>
     );
 }

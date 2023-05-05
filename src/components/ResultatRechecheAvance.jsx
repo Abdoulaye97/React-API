@@ -30,7 +30,7 @@ function ResultatRechercheAvancee({ searchResult }) {
                 <>
                     <h2 className="titre">Résultats de recherche</h2>
                     <div className="row" key="search-results">
-                        {articleTrouve.slice(0,5).map((article) => (
+                        {articleTrouve.slice(0,6).map((article) => (
                             <div key={article.id} className="col-2 box">
                                 <Link
                                     to={`/details-articles/${article.objectID}`}

@@ -12,7 +12,7 @@ function RechercheSimple({showAvanceButton})
     const [search, setSearch] = useState("");
     const [searchResult, setSearchResult] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [articlesPerPage] = useState(5);
+    const [articlesPerPage] = useState(6);
 
     const handleSearch = async (query) => {
         const response = await fetch(`https://collectionapi.metmuseum.org/public/collection/v1/search?q=${query}`);
@@ -47,19 +47,22 @@ function RechercheSimple({showAvanceButton})
         <div className="search-row">
             <form action="submit" onSubmit={handleSubmit}>
             <input type="text" className="search-input" value={search} placeholder="Recherche Simple..." onChange={handleChange}/>
-                <button className="search-button">Rechercher</button>
+                <button className="search-button btn">Rechercher</button>
                   <Link to="/recherche-avance" className={showAvanceButton ? '' : 'hide'}>
-                      <button className="search-button">Avance</button>
+                      <button className="tt">Avance</button>
                   </Link>
+
+            </form>
+        </div>
+            <ResultatRechercheSimple searchResult={currentArticles} />
+            <div className="pagi">
                 <Pagination
                     articlesPerPage={articlesPerPage}
                     totalArticles={searchResult.length}
                     currentPage={currentPage}
                     setCurrentPage={setCurrentPage}
                 />
-            </form>
-        </div>
-            <ResultatRechercheSimple searchResult={currentArticles} />
+              </div>
         </>
    );
 }

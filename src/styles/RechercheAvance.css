@@ -26,15 +26,6 @@ input[type="text"] {
     font-size: 16px;
     margin-bottom: 20px;
 }
-button.search-button {
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    max-width: 100%;
-    width: 150px; /* nouvelle largeur */
-    height: 40px;
-    margin-top: 20px;
-    margin-left: 100px;
-}
 .hide {
     display: none;
 }
