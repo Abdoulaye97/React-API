@@ -4,17 +4,21 @@ import  "../styles/Recherche.css"
 import ResultatRechercheSimple from "./ResultatRechercheSimple";
 
 import {Link} from "react-router-dom";
+import Pagination from "./Pagination";
 
 
 function RechercheSimple({showAvanceButton})
 {
     const [search, setSearch] = useState("");
     const [searchResult, setSearchResult] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [articlesPerPage] = useState(5);
 
     const handleSearch = async (query) => {
         const response = await fetch(`https://collectionapi.metmuseum.org/public/collection/v1/search?q=${query}`);
         const data = await response.json();
         return data;
+        setCurrentPage(1);
     };
 
     const handleSubmit = async (event) => {
@@ -33,6 +37,10 @@ function RechercheSimple({showAvanceButton})
 
     };
 
+    const indexOfLastArticle = currentPage * articlesPerPage;
+    const indexOfFirstArticle = indexOfLastArticle - articlesPerPage;
+    const currentArticles = searchResult.slice(indexOfFirstArticle, indexOfLastArticle);
+
     return (
         <>
 
@@ -43,10 +51,15 @@ function RechercheSimple({showAvanceButton})
                   <Link to="/recherche-avance" className={showAvanceButton ? '' : 'hide'}>
                       <button className="search-button">Avance</button>
                   </Link>
-
+                <Pagination
+                    articlesPerPage={articlesPerPage}
+                    totalArticles={searchResult.length}
+                    currentPage={currentPage}
+                    setCurrentPage={setCurrentPage}
+                />
             </form>
         </div>
-            <ResultatRechercheSimple searchResult={searchResult} />
+            <ResultatRechercheSimple searchResult={currentArticles} />
         </>
    );
 }

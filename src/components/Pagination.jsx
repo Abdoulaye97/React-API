@@ -1,22 +1,30 @@
-function Pagination({totalsPosts,postsPerPage,onPageChange})
+import React from "react";
 
+
+function Pagination({ articlesPerPage, totalArticles, currentPage, setCurrentPage })
 {
-  let pages = [];
+    const pageNumbers = [];
 
-  for(let i =1;i<=Math.ceil(totalsPosts/postsPerPage); i++)
-    {
-        pages.push(i);
+    for (let i = 1; i <= Math.ceil(totalArticles / articlesPerPage); i++) {
+      pageNumbers.push(i);
     }
-    return (
-      <>
 
-             {
-                 pages.map((page, index)=> {
-                     return <button key={index} onClick={() => onPageChange}>{page}</button>;
-                 })}
+    const handleClick = (pageNumber) => {
+      setCurrentPage(pageNumber);
+    };
 
-      </>
-    );
+  return (
+      <div>
+        {pageNumbers.map((pageNumber) => (
+            <button
+                key={pageNumber}
+                onClick={() => handleClick(pageNumber)}
+                disabled={pageNumber === currentPage}
+            >
+              {pageNumber}
+            </button>
+        ))}
+      </div>
+  );
 }
-
 export  default Pagination;

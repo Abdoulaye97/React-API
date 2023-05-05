@@ -67,9 +67,9 @@ function ResultatRechercheAvancee({ searchResult }) {
                             </div>
                         ))}
                     </div>
-                    <div className="pagi">
-                        <Pagination totalsPosts={articleTrouve.length}/>
-                    </div>
+                        <div className="pagi">
+                            <Pagination totalsPosts={articleTrouve.length}/>
+                        </div>
                 </>
             )}
 
